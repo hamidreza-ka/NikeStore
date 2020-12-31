@@ -61,4 +61,6 @@ dependencies {
     implementation "org.koin:koin-android-scope:$koin_version"
     // or Koin for Android Architecture ViewModel
     implementation "org.koin:koin-android-viewmodel:$koin_version"
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }
