@@ -1,4 +1,4 @@
-package com.example.nikestore.main
+package com.example.nikestore.feature.main
 
 import androidx.lifecycle.MutableLiveData
 import com.example.nikestore.core.NikeViewModel
@@ -14,11 +14,14 @@ class MainViewModel(productRepository: ProductRepository) : NikeViewModel() {
 
     val productsLiveData  = MutableLiveData<List<Product>>()
 
+
     init {
 
+        progressLiveData.value = true
         productRepository.getProducts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { progressLiveData.value = false }
             .subscribe(object : SingleObserver<List<Product>> {
 
                 override fun onSubscribe(d: Disposable) {
