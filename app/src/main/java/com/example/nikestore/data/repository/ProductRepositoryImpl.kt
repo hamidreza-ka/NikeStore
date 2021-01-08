@@ -10,7 +10,7 @@ class ProductRepositoryImpl(
     val localDataSource: ProductDataSource
 ) : ProductRepository {
 
-    override fun getProducts(): Single<List<Product>> = remoteDataSource.getProducts()
+    override fun getProducts(sort : Int): Single<List<Product>> = remoteDataSource.getProducts(sort)
 
     override fun getFavoriteProducts(): Single<List<Product>> {
         TODO("Not yet implemented")
