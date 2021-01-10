@@ -1,7 +1,10 @@
 package com.example.nikestore.data
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Product(
 	val image: String,
 	val price: Int,
@@ -11,7 +14,7 @@ data class Product(
 	@SerializedName("previous_price")
 	val previousPrice: Int,
 	val status: Int
-)
+) : Parcelable
 
 
 const val SORT_LATEST = 0

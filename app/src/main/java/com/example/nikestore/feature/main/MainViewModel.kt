@@ -27,6 +27,7 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
 
         bannerRepository.getBanner().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { progressLiveData.value = false }
             .subscribe(object : NikeSingleObserver<List<Banner>>(compositeDisposable) {
 
                 override fun onSuccess(t: List<Banner>) {
@@ -49,7 +50,6 @@ class MainViewModel(productRepository: ProductRepository, bannerRepository: Bann
         productRepository.getProducts(SORT_POPULAR)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doFinally { progressLiveData.value = false }
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t: List<Product>) {
                     popularProductsLiveData.value = t

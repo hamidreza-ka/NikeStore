@@ -13,6 +13,6 @@ abstract class NikeSingleObserver<T>(val compositeDisposable: CompositeDisposabl
     }
 
     override fun onError(e: Throwable) {
-        Timber.e(e);
+        Timber.e(e)
     }
 }

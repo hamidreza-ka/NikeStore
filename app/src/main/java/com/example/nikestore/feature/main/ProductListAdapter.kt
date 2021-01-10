@@ -16,6 +16,8 @@ import com.example.nikestore.view.NikeImageView
 class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
     RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
+    var onProductClickListener : OnProductClickListener? = null
+
     var products = ArrayList<Product>()
         set(value) {
             field = value
@@ -40,7 +42,9 @@ class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
 
             itemView.implementSpringAnimationTrait()
             // this caused item view be clickable and can implement animation
-            itemView.setOnClickListener {  }
+            itemView.setOnClickListener {
+                onProductClickListener?.onProductClick(product)
+            }
         }
     }
 
@@ -52,4 +56,8 @@ class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
         holder.bindProduct(products[position])
 
     override fun getItemCount(): Int = products.size
+
+    interface OnProductClickListener{
+        fun onProductClick(product: Product)
+    }
 }
