@@ -72,12 +72,22 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/default_description"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"/>
 
         </LinearLayout>
     </com.example.nikestore.view.scroll.ObservableScrollView>

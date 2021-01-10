@@ -2,11 +2,9 @@ package com.example.nikestore
 
 import android.app.Application
 import android.os.Bundle
-import com.example.nikestore.data.repository.BannerRepository
-import com.example.nikestore.data.repository.BannerRepositoryImpl
-import com.example.nikestore.data.repository.ProductRepository
-import com.example.nikestore.data.repository.ProductRepositoryImpl
+import com.example.nikestore.data.repository.*
 import com.example.nikestore.data.repository.source.BannerRemoteDataSource
+import com.example.nikestore.data.repository.source.CommentRemoteDataSource
 import com.example.nikestore.data.repository.source.ProductLocalDataSource
 import com.example.nikestore.data.repository.source.ProductRemoteDataSource
 import com.example.nikestore.feature.main.MainViewModel
@@ -42,10 +40,12 @@ class App : Application() {
                 )
             }
 
+            factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
+
             factory { ProductListAdapter(get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
             viewModel { MainViewModel(get(), get()) }
-            viewModel { (bundle : Bundle) -> ProductDetailViewModel(bundle) }
+            viewModel { (bundle : Bundle) -> ProductDetailViewModel(bundle, get()) }
 
 
         }

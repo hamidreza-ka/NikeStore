@@ -3,8 +3,11 @@ package com.example.nikestore.feature.product
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
 import com.example.nikestore.core.formatPrice
+import com.example.nikestore.data.Comment
 import com.example.nikestore.modules.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
@@ -17,14 +20,15 @@ import timber.log.Timber
 
 class ProductDetailActivity : AppCompatActivity() {
 
-    val productDetailViewModel: ProductDetailViewModel by viewModel { parametersOf(intent.extras) }
+    private val viewModel: ProductDetailViewModel by viewModel { parametersOf(intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
+    lateinit var commentAdapter: CommentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
 
-        productDetailViewModel.productLiveData.observe(this) {
+        viewModel.productLiveData.observe(this) {
             imageLoadingService.load(productDetailIv, it.image)
             titleTv.text = it.title
             previousPriceDetailTv.text = formatPrice(it.previousPrice)
@@ -33,15 +37,33 @@ class ProductDetailActivity : AppCompatActivity() {
             toolbarTitleTv.text = it.title
         }
 
-        productDetailIv.post{
+        viewModel.commentsLiveData.observe(this) {
+            Timber.i(it[0].toString())
+            commentAdapter.comments = it as ArrayList<Comment>
+        }
+
+
+    }
+
+    fun initViews() {
+
+        commentsRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        val commentAdapter = CommentAdapter()
+        commentsRv.adapter = commentAdapter
+
+        productDetailIv.post {
 
             val productIvHeight = productDetailIv.height
             val toolbar = toolbarView
             val productImageView = productDetailIv
 
-            observableScrollView.addScrollViewCallbacks(object : ObservableScrollViewCallbacks{
+            observableScrollView.addScrollViewCallbacks(object : ObservableScrollViewCallbacks {
 
-                override fun onScrollChanged(scrollY: Int, firstScroll: Boolean, dragging: Boolean) {
+                override fun onScrollChanged(
+                    scrollY: Int,
+                    firstScroll: Boolean,
+                    dragging: Boolean
+                ) {
                     toolbar.alpha = scrollY.toFloat() / productIvHeight.toFloat()
                     productImageView.translationY = scrollY.toFloat() / 2
                 }
@@ -54,6 +76,5 @@ class ProductDetailActivity : AppCompatActivity() {
 
             })
         }
-
     }
 }
