@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
 import com.example.nikestore.data.Comment
 
-class CommentAdapter : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
+class CommentAdapter(val showAll : Boolean = false) : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
 
     var comments = ArrayList<Comment>()
     set(value) {
@@ -42,5 +42,5 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
         holder.bindComment(comments[position])
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = if (comments.size > 3 && !showAll) 3 else comments.size
 }

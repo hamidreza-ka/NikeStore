@@ -9,7 +9,7 @@
     <com.example.nikestore.view.scroll.ObservableScrollView
         android:id="@+id/observableScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                     android:id="@+id/productDetailIv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:viewAspectRatio="1" />
+                    app:viewAspectRatio="1.3" />
             </FrameLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +39,7 @@
                     android:layout_marginTop="16dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textAppearance="@style/TextAppearance.MyTheme.Headline6"
+                    android:textAppearance="?textAppearanceHeadline6"
                     app:layout_constraintEnd_toStartOf="@id/previousPriceDetailTv"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textAppearance="?textAppearanceBody2"
                     android:textColor="?android:textColorSecondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAppearance="?textAppearanceBody1"
                     app:layout_constraintEnd_toEndOf="@id/previousPriceDetailTv"
                     app:layout_constraintTop_toBottomOf="@id/previousPriceDetailTv"
                     tools:text="1,100,000 تومان" />
@@ -77,17 +77,57 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/default_description"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                android:textAppearance="?textAppearanceBody2"
+                android:textAlignment="textStart"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:text="@string/comments"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textColor="?android:textColorSecondary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/insertComment"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_gravity="center_vertical|end"/>
+
+            </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentsRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_comment"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/viewAllCommentsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/viewAllComments"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:paddingTop="12dp"
+                app:strokeColor="?deviderColor"/>
 
         </LinearLayout>
     </com.example.nikestore.view.scroll.ObservableScrollView>
@@ -128,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
             android:layout_marginStart="48dp"
-            android:textAppearance="@style/TextAppearance.MyTheme.Headline6"
+            android:textAppearance="?textAppearanceHeadline6"
             tools:text="نام محصول" />
 
     </com.google.android.material.card.MaterialCardView>

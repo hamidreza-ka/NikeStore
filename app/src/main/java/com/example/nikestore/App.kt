@@ -10,6 +10,7 @@ import com.example.nikestore.data.repository.source.ProductRemoteDataSource
 import com.example.nikestore.feature.main.MainViewModel
 import com.example.nikestore.feature.main.ProductListAdapter
 import com.example.nikestore.feature.product.ProductDetailViewModel
+import com.example.nikestore.feature.product.comment.CommentListViewModel
 import com.example.nikestore.modules.FrescoImageLoadingService
 import com.example.nikestore.modules.ImageLoadingService
 import com.example.nikestore.modules.http.createApiServiceInstance
@@ -45,7 +46,8 @@ class App : Application() {
             factory { ProductListAdapter(get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
             viewModel { MainViewModel(get(), get()) }
-            viewModel { (bundle : Bundle) -> ProductDetailViewModel(bundle, get()) }
+            viewModel { (bundle: Bundle) -> ProductDetailViewModel(bundle, get()) }
+            viewModel { (productId: Int) -> CommentListViewModel(productId, get()) }
 
 
         }

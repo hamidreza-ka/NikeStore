@@ -10,6 +10,10 @@ import android.view.View
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
+import io.reactivex.Scheduler
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 
@@ -80,4 +84,10 @@ fun View.implementSpringAnimationTrait() {
 
         false
     }
+}
+
+fun <T> Single<T>.asyncNetworkRequest() : Single<T>{
+
+    return subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
 }

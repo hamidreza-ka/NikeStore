@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="deviderColor" format="color"/>
+    <declare-styleable name="NikeToolbar">
+        <attr name="nt_title" format="string"/>
+    </declare-styleable>
 </resources>

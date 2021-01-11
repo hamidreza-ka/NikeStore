@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_comment"
-    android:padding="16dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/commentTitleTv"
@@ -16,7 +14,9 @@
         app:layout_constraintEnd_toStartOf="@id/commentDateTv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="کفش خفن نایکی" />
+        tools:text="کفش خفن نایکی"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
 
     <TextView
         android:id="@+id/commentDateTv"
@@ -27,6 +27,8 @@
         app:layout_constraintBottom_toBottomOf="@id/commentTitleTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         tools:text="تاریخ کامنت" />
 
     <TextView
@@ -50,4 +52,14 @@
         app:layout_constraintEnd_toEndOf="@id/commentDateTv"
         app:layout_constraintStart_toStartOf="@id/commentAuthorTv"
         app:layout_constraintTop_toBottomOf="@id/commentAuthorTv" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?deviderColor"
+        app:layout_constraintTop_toBottomOf="@id/commentContentTv"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

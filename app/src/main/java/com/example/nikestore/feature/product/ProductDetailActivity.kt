@@ -1,28 +1,35 @@
 package com.example.nikestore.feature.product
 
+import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
+import com.example.nikestore.core.EXTRA_KEY_DATA
+import com.example.nikestore.core.EXTRA_KEY_ID
+import com.example.nikestore.core.NikeActivity
 import com.example.nikestore.core.formatPrice
 import com.example.nikestore.data.Comment
+import com.example.nikestore.feature.product.comment.CommentListActivity
 import com.example.nikestore.modules.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.item_product.*
 
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivity : NikeActivity() {
 
     private val viewModel: ProductDetailViewModel by viewModel { parametersOf(intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
-    lateinit var commentAdapter: CommentAdapter
+    val commentAdapter = CommentAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,25 +44,43 @@ class ProductDetailActivity : AppCompatActivity() {
             toolbarTitleTv.text = it.title
         }
 
+        viewModel.progressLiveData.observe(this) {
+            setProgressIndicator(it)
+        }
+
         viewModel.commentsLiveData.observe(this) {
             Timber.i(it[0].toString())
             commentAdapter.comments = it as ArrayList<Comment>
+
+            if (it.size > 3) {
+
+                viewAllCommentsBtn.visibility = View.VISIBLE
+
+                viewAllCommentsBtn.setOnClickListener {
+                    startActivity(Intent(this, CommentListActivity::class.java).apply {
+                        putExtra(EXTRA_KEY_ID, viewModel.productLiveData.value!!.id)
+                    })
+                }
+            }
         }
 
+        initViews()
 
     }
 
     fun initViews() {
 
         commentsRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        val commentAdapter = CommentAdapter()
         commentsRv.adapter = commentAdapter
+
+
 
         productDetailIv.post {
 
             val productIvHeight = productDetailIv.height
             val toolbar = toolbarView
             val productImageView = productDetailIv
+            val productTitleTv = productTitleTv
 
             observableScrollView.addScrollViewCallbacks(object : ObservableScrollViewCallbacks {
 
@@ -65,6 +90,8 @@ class ProductDetailActivity : AppCompatActivity() {
                     dragging: Boolean
                 ) {
                     toolbar.alpha = scrollY.toFloat() / productIvHeight.toFloat()
+                    //    Timber.i("Title : ${productIvHeight.toFloat() / (productIvHeight.toFloat() - (scrollY.toFloat() * 2 ))}")
+                    // productTitleTv.alpha = productIvHeight.toFloat() / scrollY.toFloat()
                     productImageView.translationY = scrollY.toFloat() / 2
                 }
 
@@ -76,5 +103,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
             })
         }
+
+
     }
 }
