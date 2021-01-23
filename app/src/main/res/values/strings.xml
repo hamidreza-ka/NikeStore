@@ -9,4 +9,18 @@
     <string name="default_description">این کتونی شدیدا برای دویدن و راه رفتن مناسب هست ، همچنین هیچ فشار مخربی رو اجازه نمیده که به پا و زانوی شما منتقل بشه .</string>
     <string name="comments">نظرات کاربران</string>
     <string name="insertComment">ثبت نظر</string>
+    <string name="productList">لیست محصولات</string>
+    <string name="sort">مرتب سازی</string>
+    <string name="sortLatest">جدیدترین</string>
+    <string name="sortPopular">پربازدیدترین</string>
+    <string name="sortPriceHighToLow">گران ترین</string>
+    <string name="sortPriceLowtoHigh">ارزان ترین</string>
+
+    <string-array name="sortTitlesArray">
+        <item>@string/sortLatest</item>
+        <item>@string/sortPopular</item>
+        <item>@string/sortPriceHighToLow</item>
+        <item>@string/sortPriceLowtoHigh</item>
+    </string-array>
+
 </resources>

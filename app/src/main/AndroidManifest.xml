@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NikeStore"
         android:usesCleartextTraffic="true">
-        <activity android:name=".feature.product.comment.CommentListActivity"></activity>
+        <activity android:name=".feature.list.ProductListActivity" />
+        <activity android:name=".feature.product.comment.CommentListActivity" />
         <activity android:name=".feature.product.ProductDetailActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".feature.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

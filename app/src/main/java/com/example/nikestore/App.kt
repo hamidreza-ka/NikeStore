@@ -7,8 +7,9 @@ import com.example.nikestore.data.repository.source.BannerRemoteDataSource
 import com.example.nikestore.data.repository.source.CommentRemoteDataSource
 import com.example.nikestore.data.repository.source.ProductLocalDataSource
 import com.example.nikestore.data.repository.source.ProductRemoteDataSource
-import com.example.nikestore.feature.main.MainViewModel
-import com.example.nikestore.feature.main.ProductListAdapter
+import com.example.nikestore.feature.common.ProductListAdapter
+import com.example.nikestore.feature.list.ProductListViewModel
+import com.example.nikestore.feature.home.HomeViewModel
 import com.example.nikestore.feature.product.ProductDetailViewModel
 import com.example.nikestore.feature.product.comment.CommentListViewModel
 import com.example.nikestore.modules.FrescoImageLoadingService
@@ -43,11 +44,12 @@ class App : Application() {
 
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
 
-            factory { ProductListAdapter(get()) }
+            factory { (viewType : Int) -> ProductListAdapter(viewType, get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
-            viewModel { MainViewModel(get(), get()) }
+            viewModel { HomeViewModel(get(), get()) }
             viewModel { (bundle: Bundle) -> ProductDetailViewModel(bundle, get()) }
             viewModel { (productId: Int) -> CommentListViewModel(productId, get()) }
+            viewModel { (sort : Int) -> ProductListViewModel(sort, get()) }
 
 
         }

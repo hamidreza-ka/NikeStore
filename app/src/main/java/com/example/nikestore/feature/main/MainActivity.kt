@@ -1,10 +1,10 @@
-package com.example.nikestore
+package com.example.nikestore.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import com.example.nikestore.R
 import com.example.nikestore.core.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

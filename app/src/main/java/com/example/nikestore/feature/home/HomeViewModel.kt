@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.main
+package com.example.nikestore.feature.home
 
 import androidx.lifecycle.MutableLiveData
 import com.example.nikestore.core.NikeSingleObserver
@@ -13,7 +13,7 @@ import com.example.nikestore.data.repository.ProductRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(productRepository: ProductRepository, bannerRepository: BannerRepository) :
+class HomeViewModel(productRepository: ProductRepository, bannerRepository: BannerRepository) :
     NikeViewModel() {
 
     val latestProductsLiveData = MutableLiveData<List<Product>>()

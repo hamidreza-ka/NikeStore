@@ -1,4 +1,4 @@
-package com.example.nikestore.feature.main
+package com.example.nikestore.feature.common
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -12,11 +12,19 @@ import com.example.nikestore.core.implementSpringAnimationTrait
 import com.example.nikestore.data.Product
 import com.example.nikestore.modules.ImageLoadingService
 import com.example.nikestore.view.NikeImageView
+import java.lang.IllegalStateException
 
-class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
+const val VIEW_TYPE_ROUND = 0
+const val VIEW_TYPE_SMALL = 1
+const val VIEW_TIPE_LARGE = 2
+
+class ProductListAdapter(
+    var viewType: Int = VIEW_TYPE_ROUND,
+    val imageLoadingService: ImageLoadingService
+) :
     RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
-    var onProductClickListener : OnProductClickListener? = null
+    var onProductClickListener: OnProductClickListener? = null
 
     var products = ArrayList<Product>()
         set(value) {
@@ -48,16 +56,29 @@ class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
-    )
+    override fun getItemViewType(position: Int): Int = viewType
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        val layoutResId = when (viewType) {
+
+            VIEW_TYPE_ROUND -> R.layout.item_product
+            VIEW_TYPE_SMALL -> R.layout.item_product_small
+            VIEW_TIPE_LARGE -> R.layout.item_product_large
+            else -> throw IllegalStateException("viewType is not valid")
+        }
+
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
+        )
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bindProduct(products[position])
 
     override fun getItemCount(): Int = products.size
 
-    interface OnProductClickListener{
+    interface OnProductClickListener {
         fun onProductClick(product: Product)
     }
 }
