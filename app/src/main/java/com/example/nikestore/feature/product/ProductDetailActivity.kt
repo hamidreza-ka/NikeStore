@@ -5,18 +5,22 @@ import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
-import com.example.nikestore.core.EXTRA_KEY_DATA
-import com.example.nikestore.core.EXTRA_KEY_ID
-import com.example.nikestore.core.NikeActivity
-import com.example.nikestore.core.formatPrice
+import com.example.nikestore.core.*
 import com.example.nikestore.data.Comment
 import com.example.nikestore.feature.product.comment.CommentListActivity
 import com.example.nikestore.modules.ImageLoadingService
 import com.example.nikestore.view.scroll.ObservableScrollViewCallbacks
 import com.example.nikestore.view.scroll.ScrollState
+import com.google.android.material.snackbar.Snackbar
+import io.reactivex.CompletableObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.item_product.*
 
@@ -28,8 +32,9 @@ import timber.log.Timber
 class ProductDetailActivity : NikeActivity() {
 
     private val viewModel: ProductDetailViewModel by viewModel { parametersOf(intent.extras) }
-    val imageLoadingService: ImageLoadingService by inject()
-    val commentAdapter = CommentAdapter()
+    private val imageLoadingService: ImageLoadingService by inject()
+    private val commentAdapter = CommentAdapter()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +73,7 @@ class ProductDetailActivity : NikeActivity() {
 
     }
 
-    fun initViews() {
+    private fun initViews() {
 
         commentsRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         commentsRv.adapter = commentAdapter
@@ -105,5 +110,21 @@ class ProductDetailActivity : NikeActivity() {
         }
 
 
+        addToCartBtn.setOnClickListener {
+            viewModel.onAddToCartBtnClicked()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : NikeCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        showSnackBar(getString(R.string.successAddToCart))
+                    }
+                })
+        }
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

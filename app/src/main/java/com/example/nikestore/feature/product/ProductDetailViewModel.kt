@@ -8,11 +8,13 @@ import com.example.nikestore.core.NikeViewModel
 import com.example.nikestore.core.asyncNetworkRequest
 import com.example.nikestore.data.Comment
 import com.example.nikestore.data.Product
+import com.example.nikestore.data.repository.CartRepository
 import com.example.nikestore.data.repository.CommentRepository
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class ProductDetailViewModel(bundle: Bundle, commentRepository: CommentRepository) :
+class ProductDetailViewModel(bundle: Bundle, commentRepository: CommentRepository, val cartRepository: CartRepository) :
     NikeViewModel() {
 
     val productLiveData = MutableLiveData<Product>()
@@ -34,4 +36,7 @@ class ProductDetailViewModel(bundle: Bundle, commentRepository: CommentRepositor
 
             })
     }
+
+
+    fun onAddToCartBtnClicked() : Completable = cartRepository.addToCart(productLiveData.value!!.id).ignoreElement()
 }

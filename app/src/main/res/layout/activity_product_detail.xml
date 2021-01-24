@@ -9,7 +9,8 @@
     <com.example.nikestore.view.scroll.ObservableScrollView
         android:id="@+id/observableScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,15 +78,15 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/default_description"
-                android:textAppearance="?textAppearanceBody2"
-                android:textAlignment="textStart"/>
+                android:textAlignment="textStart"
+                android:textAppearance="?textAppearanceBody2" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginTop="16dp">
+                android:paddingEnd="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -96,11 +97,11 @@
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/insertComment"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_gravity="center_vertical|end"/>
+                    android:layout_gravity="center_vertical|end"
+                    android:text="@string/insertComment" />
 
             </FrameLayout>
 
@@ -108,26 +109,25 @@
                 android:id="@+id/commentsRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_comment"
-                />
+                android:clipToPadding="false" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/viewAllCommentsBtn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="32dp"
+                android:paddingTop="12dp"
                 android:text="@string/viewAllComments"
                 android:visibility="gone"
-                tools:visibility="visible"
-                android:paddingTop="12dp"
-                app:strokeColor="?deviderColor"/>
+                app:strokeColor="?deviderColor"
+                tools:visibility="visible" />
 
         </LinearLayout>
     </com.example.nikestore.view.scroll.ObservableScrollView>
@@ -173,5 +173,16 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/addToCartBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/addToCart"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

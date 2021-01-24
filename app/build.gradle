@@ -60,13 +60,11 @@ dependencies {
     //RxAndroid
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
-    // Stable Koin Version
-   def koin_version = "2.2.0"
-    // Koin for Android
+
+    def koin_version = "2.2.0"
     implementation "org.koin:koin-android:$koin_version"
     // or Koin for Lifecycle scoping
     implementation "org.koin:koin-android-scope:$koin_version"
-    // or Koin for Android Architecture ViewModel
     implementation "org.koin:koin-android-viewmodel:$koin_version"
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -82,4 +80,6 @@ dependencies {
 
     // recycler view animation
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
+
+    implementation 'org.greenrobot:eventbus:3.2.0'
 }
