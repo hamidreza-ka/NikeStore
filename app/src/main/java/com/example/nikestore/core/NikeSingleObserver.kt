@@ -14,7 +14,7 @@ abstract class NikeSingleObserver<T>(private val compositeDisposable: CompositeD
     }
 
     override fun onError(e: Throwable) {
-        EventBus.getDefault().post(NikeExeptionMapper.map(e))
+        EventBus.getDefault().post(NikeExceptionMapper.map(e))
         Timber.e(e)
     }
 }

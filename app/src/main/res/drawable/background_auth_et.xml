@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    you have to write this first-->
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <stroke android:width="1dp" android:color="?colorOnSurface" />
-            <corners android:radius="23dp" />
+            <corners android:radius="8dp"/>
+            <stroke android:width="1dp"  android:color="@color/blue"/>
         </shape>
     </item>
+
+<!--    and write this second-->
     <item>
         <shape android:shape="rectangle">
-            <stroke android:width="1dp" android:color="?attr/dividerColor" />
-            <corners android:radius="23dp" />
+            <corners android:radius="8dp"/>
+            <stroke android:width="1dp" android:color="#48ffffff"/>
         </shape>
     </item>
+
 </selector>

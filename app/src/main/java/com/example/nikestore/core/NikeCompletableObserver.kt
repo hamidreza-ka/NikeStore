@@ -13,7 +13,7 @@ abstract class NikeCompletableObserver(private val compositeDisposable: Composit
     }
 
     override fun onError(e: Throwable) {
-        EventBus.getDefault().post(NikeExeptionMapper.map(e))
+        EventBus.getDefault().post(NikeExceptionMapper.map(e))
         Timber.e(e)
     }
 }

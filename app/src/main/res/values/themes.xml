@@ -34,10 +34,23 @@
 
         <item name="bottomNavigationStyle">@style/MyBottomNavigationView</item>
 
-        <item name="deviderColor">@color/gray</item>
+        <item name="dividerColor">@color/gray</item>
         <item name="android:textColorSecondary">@color/darkGray</item>
         <item name="android:lineSpacingExtra">6dp</item>
         <item name="android:includeFontPadding">false</item>
 
+    </style>
+
+
+    <style name="Theme.Nike.AuthTheme" parent="Theme.NikeStore">
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+
+<!--        this is important and set style on elements-->
+        <item name="materialButtonStyle">@style/Theme.Nike.AuthTheme.Button</item>
+        <item name="android:editTextStyle">@style/Theme.Nike.AuthTheme.EditText</item>
     </style>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.nikestore.data
 
-import com.example.nikestore.data.CartItem
 import com.google.gson.annotations.SerializedName
 
 data class CartResponse(

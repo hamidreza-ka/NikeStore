@@ -126,7 +126,7 @@
                 android:paddingTop="12dp"
                 android:text="@string/viewAllComments"
                 android:visibility="gone"
-                app:strokeColor="?deviderColor"
+                app:strokeColor="?attr/dividerColor"
                 tools:visibility="visible" />
 
         </LinearLayout>
@@ -143,6 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
             android:layout_marginStart="16dp"
+            android:background="?selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ic_back" />
 
         <ImageView

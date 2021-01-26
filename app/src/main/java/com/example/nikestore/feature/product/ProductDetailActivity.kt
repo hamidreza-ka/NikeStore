@@ -78,14 +78,13 @@ class ProductDetailActivity : NikeActivity() {
         commentsRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         commentsRv.adapter = commentAdapter
 
-
+        backIv.setOnClickListener { finish() }
 
         productDetailIv.post {
 
             val productIvHeight = productDetailIv.height
             val toolbar = toolbarView
             val productImageView = productDetailIv
-            val productTitleTv = productTitleTv
 
             observableScrollView.addScrollViewCallbacks(object : ObservableScrollViewCallbacks {
 

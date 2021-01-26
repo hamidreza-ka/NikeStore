@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nikestore.R
-import com.example.nikestore.core.NikeExeption.Type.*
+import com.example.nikestore.core.NikeException.Type.*
 import com.example.nikestore.feature.auth.AuthActivity
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
@@ -34,6 +34,7 @@ abstract class NikeFragment : Fragment(), NikeView {
 
     override fun onStart() {
         super.onStart()
+        if (!EventBus.getDefault().isRegistered(this))
         EventBus.getDefault().register(this)
     }
 
@@ -96,7 +97,7 @@ interface NikeView {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun showError(nikeException: NikeExeption){
+    fun showError(nikeException: NikeException){
         viewContext?.let {
 
             when (nikeException.type){
