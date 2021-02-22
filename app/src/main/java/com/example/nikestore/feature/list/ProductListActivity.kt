@@ -55,12 +55,12 @@ class ProductListActivity : NikeActivity(), ProductListAdapter.OnProductClickLis
 
             if (productListAdapter.viewType == VIEW_TYPE_SMALL) {
                 gridIv.setImageResource(R.drawable.ic_view_type_large)
-                productListAdapter.viewType == VIEW_TIPE_LARGE
+                productListAdapter.viewType = VIEW_TIPE_LARGE
                 gridLayoutManager.spanCount = 1
                 productListAdapter.notifyDataSetChanged()
             } else {
                 gridIv.setImageResource(R.drawable.ic_grid)
-                productListAdapter.viewType == VIEW_TYPE_SMALL
+                productListAdapter.viewType = VIEW_TYPE_SMALL
                 gridLayoutManager.spanCount = 2
                 productListAdapter.notifyDataSetChanged()
             }

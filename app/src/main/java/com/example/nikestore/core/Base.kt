@@ -82,15 +82,15 @@ interface NikeView {
     fun setProgressIndicator(mustShow: Boolean) {
         rootView?.let {
             viewContext?.let { context ->
-                var loadongView = it.findViewById<View>(R.id.loadingView)
-                if (loadongView == null && mustShow) {
+                var loadingView = it.findViewById<View>(R.id.loadingView)
+                if (loadingView == null && mustShow) {
 
-                    loadongView =
+                    loadingView =
                         LayoutInflater.from(context).inflate(R.layout.view_loading, it, false)
-                    it.addView(loadongView)
+                    it.addView(loadingView)
                 }
 
-                loadongView?.visibility = if (mustShow) View.VISIBLE else View.GONE
+                loadingView?.visibility = if (mustShow) View.VISIBLE else View.GONE
 
             }
         }

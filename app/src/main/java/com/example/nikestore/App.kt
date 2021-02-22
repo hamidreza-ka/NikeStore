@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.nikestore.data.repository.*
 import com.example.nikestore.data.repository.source.*
 import com.example.nikestore.feature.auth.AuthViewModel
+import com.example.nikestore.feature.cart.CartViewModel
 import com.example.nikestore.feature.common.ProductListAdapter
 import com.example.nikestore.feature.list.ProductListViewModel
 import com.example.nikestore.feature.home.HomeViewModel
@@ -55,6 +56,9 @@ class App : Application() {
                     MODE_PRIVATE
                 )
             }
+
+            single<UserDataSource> { UserLocalDataSource(get()) }
+
             single<UserRepository> {
                 UserRepositoryImpl(
                     UserRemoteDataSource(get()),
@@ -67,6 +71,7 @@ class App : Application() {
             viewModel { (productId: Int) -> CommentListViewModel(productId, get()) }
             viewModel { (sort: Int) -> ProductListViewModel(sort, get()) }
             viewModel { AuthViewModel(get()) }
+            viewModel { CartViewModel(get()) }
 
 
         }

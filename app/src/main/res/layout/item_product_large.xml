@@ -14,8 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:viewAspectRatio="0.8"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:viewAspectRatio="0.8" />
 
     <TextView
         android:id="@+id/productTitleTv"
@@ -68,4 +67,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_favorites" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

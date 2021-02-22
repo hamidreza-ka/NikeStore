@@ -9,7 +9,7 @@ import io.reactivex.Single
 const val CLIENT_ID = 2
 const val CLIENT_SECRET = "kyj1c9sVcksqGU4scMX7nLDalkjp2WoqQEf8PKAC"
 
-class UserRemoteDataSource(val apiService: ApiService) : UserDataSource {
+class UserRemoteDataSource(private val apiService: ApiService) : UserDataSource {
 
     override fun login(userName: String, password: String): Single<TokenResponse> {
 

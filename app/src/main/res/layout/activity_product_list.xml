@@ -56,7 +56,7 @@
                 app:layout_constraintStart_toEndOf="@id/sortIv"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                tools:text="@string/sort" />
+                android:text="@string/sort" />
 
             <TextView
                 android:id="@+id/selectedSortTv"

@@ -82,4 +82,7 @@ dependencies {
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
 
     implementation 'org.greenrobot:eventbus:3.2.0'
+
+    // for log apis response
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 }

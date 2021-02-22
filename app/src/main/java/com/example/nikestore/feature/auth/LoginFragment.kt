@@ -40,6 +40,12 @@ class LoginFragment : Fragment() {
                     }
                 })
         }
+
+        signUpLinkBtn.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainer, SignUpFragment())
+            }.commit()
+        }
     }
 
     override fun onStop() {
