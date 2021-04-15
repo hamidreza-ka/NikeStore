@@ -10,6 +10,7 @@ import com.example.nikestore.feature.cart.CartViewModel
 import com.example.nikestore.feature.common.ProductListAdapter
 import com.example.nikestore.feature.list.ProductListViewModel
 import com.example.nikestore.feature.home.HomeViewModel
+import com.example.nikestore.feature.main.MainViewModel
 import com.example.nikestore.feature.product.ProductDetailViewModel
 import com.example.nikestore.feature.product.comment.CommentListViewModel
 import com.example.nikestore.modules.FrescoImageLoadingService
@@ -72,6 +73,7 @@ class App : Application() {
             viewModel { (sort: Int) -> ProductListViewModel(sort, get()) }
             viewModel { AuthViewModel(get()) }
             viewModel { CartViewModel(get()) }
+            viewModel { MainViewModel(get()) }
 
 
         }

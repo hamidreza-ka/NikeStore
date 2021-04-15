@@ -1,3 +1,3 @@
 package com.example.nikestore.data
 
-data class CartItemCount(val count: Int)
+data class CartItemCount(var count: Int)

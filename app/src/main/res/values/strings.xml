@@ -27,6 +27,30 @@
     <string name="signUpHint">حساب کاربری ندارید ؟</string>
     <string name="email">ایمیل</string>
     <string name="password">رمز عبور</string>
+    <string name="checkout">پرداخت</string>
+    <string name="count">تعداد</string>
+    <string name="removeFromCart">حذف از سبد خرید</string>
+    <string name="purchaseDetail">جزئیات خرید</string>
+    <string name="totalPrice">مبلغ کل خرید</string>
+    <string name="payablePrice">مبلغ قابل پرداخت</string>
+    <string name="shippingCost">هزینه ارسال</string>
+    <string name="cartEmptyStateLoginRequired">وارد حساب کاربری خود شوید</string>
+    <string name="cartEmptyStateCallToAction">ورود به حساب کاربری</string>
+    <string name="cartEmptyState">هیچ خبری اینجا نیست!</string>
+    <string name="shippingToolbarTitle">انتخاب تحویل گیرنده و شیوه پرداخت</string>
+    <string name="onlinePayment">پرداخت اینترنتی</string>
+    <string name="cashOnDelivery">پرداخت در محل</string>
+
+    <string name="firstName">نام</string>
+    <string name="lastName">نام خانوادگی</string>
+    <string name="postalCode">کد پستی</string>
+    <string name="phoneNumber">شماره تلفن همراه</string>
+    <string name="address">آدرس</string>
+    <string name="checkoutToolbarTitle">رسید پرداخت</string>
+    <string name="returnHome">بازگشت به صفحه اصلی</string>
+    <string name="orderHistory">سوابق سفارش</string>
+    <string name="purchaseStatus">وضعیت سفارش</string>
+    <string name="price">مبلغ</string>
 
     <string-array name="sortTitlesArray">
         <item>@string/sortLatest</item>

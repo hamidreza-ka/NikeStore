@@ -1,8 +1,6 @@
 package com.example.nikestore.feature.list
 
-import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,7 +9,7 @@ import com.example.nikestore.core.EXTRA_KEY_DATA
 import com.example.nikestore.core.NikeActivity
 import com.example.nikestore.data.Product
 import com.example.nikestore.feature.common.ProductListAdapter
-import com.example.nikestore.feature.common.VIEW_TIPE_LARGE
+import com.example.nikestore.feature.common.VIEW_TYPE_LARGE
 import com.example.nikestore.feature.common.VIEW_TYPE_SMALL
 import com.example.nikestore.feature.product.ProductDetailActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -55,7 +53,7 @@ class ProductListActivity : NikeActivity(), ProductListAdapter.OnProductClickLis
 
             if (productListAdapter.viewType == VIEW_TYPE_SMALL) {
                 gridIv.setImageResource(R.drawable.ic_view_type_large)
-                productListAdapter.viewType = VIEW_TIPE_LARGE
+                productListAdapter.viewType = VIEW_TYPE_LARGE
                 gridLayoutManager.spanCount = 1
                 productListAdapter.notifyDataSetChanged()
             } else {

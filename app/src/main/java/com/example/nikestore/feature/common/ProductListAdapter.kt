@@ -16,7 +16,7 @@ import java.lang.IllegalStateException
 
 const val VIEW_TYPE_ROUND = 0
 const val VIEW_TYPE_SMALL = 1
-const val VIEW_TIPE_LARGE = 2
+const val VIEW_TYPE_LARGE = 2
 
 class ProductListAdapter(
     var viewType: Int = VIEW_TYPE_ROUND,
@@ -64,7 +64,7 @@ class ProductListAdapter(
 
             VIEW_TYPE_ROUND -> R.layout.item_product
             VIEW_TYPE_SMALL -> R.layout.item_product_small
-            VIEW_TIPE_LARGE -> R.layout.item_product_large
+            VIEW_TYPE_LARGE -> R.layout.item_product_large
             else -> throw IllegalStateException("viewType is not valid")
         }
 

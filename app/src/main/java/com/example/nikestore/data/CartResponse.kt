@@ -1,6 +1,8 @@
 package com.example.nikestore.data
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class CartResponse(
 
@@ -17,8 +19,9 @@ data class CartResponse(
     val shippingCost: Int
 )
 
+@Parcelize
 data class PurchaseDetail(
     var payablePrice: Int,
     var totalPrice: Int,
     var shippingCost: Int
-)
+): Parcelable

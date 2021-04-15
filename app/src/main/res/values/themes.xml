@@ -17,6 +17,8 @@
         <item name="fontFamily">@font/primary_regular</item>
         <item name="android:fontFamily">@font/primary_regular</item>
 
+        <item name="windowBackgroundColorSub">#f5f5f5</item>
+
         <!--Material type attributes-->
         <item name="textAppearanceHeadline1">@style/TextAppearance.MyTheme.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MyTheme.Headline2</item>

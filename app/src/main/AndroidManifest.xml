@@ -13,11 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NikeStore"
         android:usesCleartextTraffic="true">
-        <activity android:name=".feature.auth.AuthActivity" android:theme="@style/Theme.Nike.AuthTheme"></activity>
+        <activity android:name=".feature.checkout.CheckOutActivity"></activity>
+        <activity android:name=".feature.shipping.ShippingActivity" />
+        <activity
+            android:name=".feature.auth.AuthActivity"
+            android:theme="@style/Theme.Nike.AuthTheme" />
         <activity android:name=".feature.list.ProductListActivity" />
         <activity android:name=".feature.product.comment.CommentListActivity" />
         <activity android:name=".feature.product.ProductDetailActivity" />
-        <activity android:name=".feature.main.MainActivity">
+
+<!--        this attr use for hide keyboard-->
+        <activity android:name=".feature.main.MainActivity"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

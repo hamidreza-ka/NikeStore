@@ -43,7 +43,7 @@ class ProductDetailActivity : NikeActivity() {
         viewModel.productLiveData.observe(this) {
             imageLoadingService.load(productDetailIv, it.image)
             titleTv.text = it.title
-            previousPriceDetailTv.text = formatPrice(it.previousPrice)
+            previousPriceDetailTv.text = formatPrice(it.price + it.discount)
             previousPriceDetailTv.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             currentPriceDetailTv.text = formatPrice(it.price)
             toolbarTitleTv.text = it.title

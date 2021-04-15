@@ -11,4 +11,7 @@ data class CartItem(
     var count : Int,
 
     @field:SerializedName("product")
-    val product: Product)
+    val product: Product,
+
+    var changeCountProgressBarIsVisible: Boolean = false
+)

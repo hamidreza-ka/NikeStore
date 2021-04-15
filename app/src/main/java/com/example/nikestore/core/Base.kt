@@ -35,7 +35,7 @@ abstract class NikeFragment : Fragment(), NikeView {
     override fun onStart() {
         super.onStart()
         if (!EventBus.getDefault().isRegistered(this))
-        EventBus.getDefault().register(this)
+            EventBus.getDefault().register(this)
     }
 
     override fun onDestroy() {
@@ -47,17 +47,17 @@ abstract class NikeFragment : Fragment(), NikeView {
 abstract class NikeActivity : AppCompatActivity(), NikeView {
 
     override val rootView: CoordinatorLayout?
-        get(){
+        get() {
             val viewGroup = window.decorView.findViewById(android.R.id.content) as ViewGroup
-            if (viewGroup !is CoordinatorLayout){
+            if (viewGroup !is CoordinatorLayout) {
 
                 viewGroup.children.forEach {
-                  if (it is CoordinatorLayout)
-                      return it
+                    if (it is CoordinatorLayout)
+                        return it
                 }
 
                 throw IllegalStateException("RootView must be instance of Coordinator Layout")
-            }else
+            } else
                 return viewGroup
         }
 
@@ -97,11 +97,13 @@ interface NikeView {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun showError(nikeException: NikeException){
+    fun showError(nikeException: NikeException) {
         viewContext?.let {
 
-            when (nikeException.type){
-                SIMPLE -> showSnackBar(nikeException.serverMessage?: it.getString(nikeException.userFriendlyMessage))
+            when (nikeException.type) {
+                SIMPLE -> showSnackBar(
+                    nikeException.serverMessage ?: it.getString(nikeException.userFriendlyMessage)
+                )
                 DIALOG -> TODO()
                 AUTH -> {
                     it.startActivity(Intent(it, AuthActivity::class.java))
@@ -111,10 +113,26 @@ interface NikeView {
         }
     }
 
-    fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT){
+    fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
         rootView?.let {
             Snackbar.make(it, message, duration).show()
         }
+    }
+
+    fun showEmptyState(layoutResId: Int): View? {
+        rootView?.let {
+            viewContext?.let { context ->
+                var emptyState = it.findViewById<View>(R.id.emptyStateRootView)
+
+                if (emptyState == null) {
+                    emptyState = LayoutInflater.from(context).inflate(layoutResId, it, false)
+                    it.addView(emptyState)
+                }
+                emptyState.visibility = View.VISIBLE
+                return emptyState
+            }
+        }
+        return null
     }
 }
 

@@ -27,9 +27,9 @@ import timber.log.Timber
 
 class HomeFragment : NikeFragment(), ProductListAdapter.OnProductClickListener {
 
-    val homeViewModel: HomeViewModel by viewModel()
-    val latestProductListAdapter: ProductListAdapter by inject { parametersOf(VIEW_TYPE_ROUND) }
-    val popularProductListAdapter: ProductListAdapter by inject { parametersOf(VIEW_TYPE_ROUND) }
+    private val homeViewModel: HomeViewModel by viewModel()
+    private val latestProductListAdapter: ProductListAdapter by inject { parametersOf(VIEW_TYPE_ROUND) }
+    private val popularProductListAdapter: ProductListAdapter by inject { parametersOf(VIEW_TYPE_ROUND) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
