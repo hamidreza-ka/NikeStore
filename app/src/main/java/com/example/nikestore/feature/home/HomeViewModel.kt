@@ -8,10 +8,8 @@ import com.example.nikestore.data.Banner
 import com.example.nikestore.data.Product
 import com.example.nikestore.data.SORT_LATEST
 import com.example.nikestore.data.SORT_POPULAR
-import com.example.nikestore.data.repository.BannerRepository
-import com.example.nikestore.data.repository.ProductRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.example.nikestore.data.repository.banner.BannerRepository
+import com.example.nikestore.data.repository.product.ProductRepository
 
 class HomeViewModel(productRepository: ProductRepository, bannerRepository: BannerRepository) :
     NikeViewModel() {

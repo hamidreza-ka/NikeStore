@@ -1,4 +1,4 @@
-package com.example.nikestore.data.repository
+package com.example.nikestore.data.repository.comment
 
 import com.example.nikestore.data.Comment
 import io.reactivex.Single

@@ -1,13 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:textAppearance="?textAppearanceHeadline2"
-        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:strokeColor="?dividerColor"
+            app:strokeWidth="1dp"
+            android:scaleType="centerInside"
+            app:shapeAppearance="@style/Avatar"
+            android:layout_marginTop="32dp"
+            app:srcCompat="@drawable/ic_nike_logo" />
+
+        <TextView
+            android:id="@+id/usernameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?textAppearanceBody1"
+            tools:text="کاربر مهمان" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="32dp"
+            android:divider="@drawable/shape_divider"
+            android:dividerPadding="48dp"
+            android:showDividers="middle">
+
+            <TextView
+                style="@style/profileTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/favorites"
+                app:drawableStartCompat="@drawable/ic_favorites_20dp" />
+
+            <TextView
+                style="@style/profileTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/orderHistory"
+                app:drawableStartCompat="@drawable/ic_order_history" />
+
+            <TextView
+                android:id="@+id/authBtn"
+                style="@style/profileTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/signIn"
+                app:drawableStartCompat="@drawable/ic_sign_in" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

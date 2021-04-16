@@ -14,7 +14,7 @@
     <string name="sortLatest">جدیدترین</string>
     <string name="sortPopular">پربازدیدترین</string>
     <string name="sortPriceHighToLow">گران ترین</string>
-    <string name="sortPriceLowtoHigh">ارزان ترین</string>
+    <string name="sortPriceLowToHigh">ارزان ترین</string>
     <string name="addToCart">افزودن به سبد خرید</string>
     <string name="unknownError">خطای نامشخص</string>
     <string name="successAddToCart">به سبد خرید اضافه شد</string>
@@ -51,12 +51,16 @@
     <string name="orderHistory">سوابق سفارش</string>
     <string name="purchaseStatus">وضعیت سفارش</string>
     <string name="price">مبلغ</string>
+    <string name="favorites">لیست علاقه مندی ها</string>
+    <string name="signIn">ورود به حساب کاربری</string>
+    <string name="signOut">خروج از حساب کاربری</string>
+    <string name="guestUser">کاربر مهمان</string>
 
     <string-array name="sortTitlesArray">
         <item>@string/sortLatest</item>
         <item>@string/sortPopular</item>
         <item>@string/sortPriceHighToLow</item>
-        <item>@string/sortPriceLowtoHigh</item>
+        <item>@string/sortPriceLowToHigh</item>
     </string-array>
 
 </resources>

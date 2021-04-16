@@ -5,9 +5,7 @@ import com.example.nikestore.core.NikeSingleObserver
 import com.example.nikestore.core.NikeViewModel
 import com.example.nikestore.core.asyncNetworkRequest
 import com.example.nikestore.data.Comment
-import com.example.nikestore.data.repository.CommentRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.example.nikestore.data.repository.comment.CommentRepository
 
 class CommentListViewModel(productId: Int, commentRepository: CommentRepository) : NikeViewModel() {
 

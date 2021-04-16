@@ -2,15 +2,12 @@ package com.example.nikestore.feature.cart
 
 import androidx.lifecycle.MutableLiveData
 import com.example.nikestore.R
-import com.example.nikestore.core.NikeCompletableObserver
 import com.example.nikestore.core.NikeSingleObserver
 import com.example.nikestore.core.NikeViewModel
 import com.example.nikestore.core.asyncNetworkRequest
 import com.example.nikestore.data.*
-import com.example.nikestore.data.repository.CartRepository
+import com.example.nikestore.data.repository.cart.CartRepository
 import io.reactivex.Completable
-import io.reactivex.SingleObserver
-import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 

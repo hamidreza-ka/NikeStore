@@ -6,9 +6,15 @@
         <item name="itemTextColor">@color/bottom_navigation_item_color</item>
         <item name="itemRippleColor">@color/bottom_navigation_ripple_color</item>
         <item name="itemTextAppearanceActive">@style/ActiveItemBottomNavigationTextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/InactiveItemBottomNavigationTextAppearance</item>
     </style>
 
     <style name="ActiveItemBottomNavigationTextAppearance" parent="TextAppearance.MyTheme.Caption">
+        <item name="fontFamily">@font/primary_extra_bold</item>
+        <item name="android:fontFamily">@font/primary_extra_bold</item>
+    </style>
+
+    <style name="InactiveItemBottomNavigationTextAppearance" parent="TextAppearance.MyTheme.Caption">
         <item name="fontFamily">@font/primary_bold</item>
         <item name="android:fontFamily">@font/primary_bold</item>
     </style>
@@ -39,5 +45,19 @@
 
     <style name="shippingTextInputEditTextStyle" parent="Theme.NikeStore">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="profileTextViews">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="Avatar">
+        <item name="cornerSize">50%</item>
     </style>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.nikestore.data.repository
+package com.example.nikestore.data.repository.cart
 
 import com.example.nikestore.data.AddToCartResponse
 import com.example.nikestore.data.CartItemCount

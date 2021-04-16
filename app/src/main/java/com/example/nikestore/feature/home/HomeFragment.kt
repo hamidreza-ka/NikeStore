@@ -73,14 +73,14 @@ class HomeFragment : NikeFragment(), ProductListAdapter.OnProductClickListener {
             val bannerSliderAdapter = BannerSliderAdapter(this, it)
             bannerSliderViewPager.adapter = bannerSliderAdapter
 
-            val viewPagerHeight = (((bannerSliderViewPager.measuredWidth - convertDpToPixel(
-                32f,
-                requireContext()
-            )) * 173) / 328).toInt()
-
-            val layoutParams = bannerSliderViewPager.layoutParams
-            layoutParams.height = viewPagerHeight
-            bannerSliderViewPager.layoutParams = layoutParams
+//            val viewPagerHeight = (((bannerSliderViewPager.measuredWidth - convertDpToPixel(
+//                32f,
+//                requireContext()
+//            )) * 173) / 328).toInt()
+//
+//            val layoutParams = bannerSliderViewPager.layoutParams
+//            layoutParams.height = viewPagerHeight
+//            bannerSliderViewPager.layoutParams = layoutParams
 
             sliderIndicator.setViewPager2(bannerSliderViewPager)
 

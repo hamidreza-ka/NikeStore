@@ -2,7 +2,7 @@ package com.example.nikestore.data
 
 import com.google.gson.annotations.SerializedName
 
-data class SubnitOrderResult(
+data class SubmitOrderResult(
 
 	@field:SerializedName("bank_gateway_url")
 	val bankGatewayUrl: String,

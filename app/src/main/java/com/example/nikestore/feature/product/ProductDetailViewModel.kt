@@ -8,11 +8,9 @@ import com.example.nikestore.core.NikeViewModel
 import com.example.nikestore.core.asyncNetworkRequest
 import com.example.nikestore.data.Comment
 import com.example.nikestore.data.Product
-import com.example.nikestore.data.repository.CartRepository
-import com.example.nikestore.data.repository.CommentRepository
+import com.example.nikestore.data.repository.cart.CartRepository
+import com.example.nikestore.data.repository.comment.CommentRepository
 import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 class ProductDetailViewModel(bundle: Bundle, commentRepository: CommentRepository, val cartRepository: CartRepository) :
     NikeViewModel() {

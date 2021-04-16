@@ -1,4 +1,4 @@
-package com.example.nikestore.data.repository
+package com.example.nikestore.data.repository.user
 
 import com.example.nikestore.data.TokenContainer
 import com.example.nikestore.data.TokenResponse
@@ -12,7 +12,7 @@ class UserRepositoryImpl(
 
     override fun login(userName: String, password: String): Completable {
         return userRemoteDataSource.login(userName, password).doOnSuccess {
-            onSuccessfulLogin(it)
+            onSuccessfulLogin(userName, it)
         }.ignoreElement()
     }
 
@@ -22,8 +22,8 @@ class UserRepositoryImpl(
             userRemoteDataSource.login(userName, password)
         }
             .doOnSuccess {
-            onSuccessfulLogin(it)
-        }
+                onSuccessfulLogin(userName, it)
+            }
             .ignoreElement()
     }
 
@@ -31,8 +31,16 @@ class UserRepositoryImpl(
         userLocalDataSource.loadToken()
     }
 
-    private fun onSuccessfulLogin(tokenResponse: TokenResponse) {
+    override fun getUsername(): String = userLocalDataSource.getUserName()
+
+    override fun signOut() {
+        userLocalDataSource.signOut()
+        TokenContainer.update(null, null)
+    }
+
+    private fun onSuccessfulLogin(username: String, tokenResponse: TokenResponse) {
         TokenContainer.update(tokenResponse.accessToken, tokenResponse.refreshToken)
         userLocalDataSource.saveToken(tokenResponse.accessToken, tokenResponse.refreshToken)
+        userLocalDataSource.saveUserName(username)
     }
 }

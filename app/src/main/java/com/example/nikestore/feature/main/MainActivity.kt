@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.example.nikestore.R
+import com.example.nikestore.core.NikeActivity
 import com.example.nikestore.core.convertDpToPixel
 import com.example.nikestore.core.setupWithNavController
 import com.example.nikestore.data.CartItemCount
@@ -16,7 +17,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : NikeActivity() {
 
     private var currentNavController: LiveData<NavController>? = null
     private val viewModel: MainViewModel by viewModel()

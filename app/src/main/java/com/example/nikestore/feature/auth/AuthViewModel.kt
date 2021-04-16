@@ -1,7 +1,7 @@
 package com.example.nikestore.feature.auth
 
 import com.example.nikestore.core.NikeViewModel
-import com.example.nikestore.data.repository.UserRepository
+import com.example.nikestore.data.repository.user.UserRepository
 import io.reactivex.Completable
 
 class AuthViewModel(private val userRepository: UserRepository) : NikeViewModel() {

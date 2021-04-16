@@ -6,7 +6,7 @@ import com.example.nikestore.core.NikeSingleObserver
 import com.example.nikestore.core.NikeViewModel
 import com.example.nikestore.core.asyncNetworkRequest
 import com.example.nikestore.data.Product
-import com.example.nikestore.data.repository.ProductRepository
+import com.example.nikestore.data.repository.product.ProductRepository
 
 class ProductListViewModel(var sort: Int, val productRepository: ProductRepository) :
     NikeViewModel() {
@@ -17,7 +17,7 @@ class ProductListViewModel(var sort: Int, val productRepository: ProductReposito
         R.string.sortLatest,
         R.string.sortPopular,
         R.string.sortPriceHighToLow,
-        R.string.sortPriceLowtoHigh
+        R.string.sortPriceLowToHigh
     )
 
     init {
