@@ -2,6 +2,7 @@ package com.example.nikestore.data.repository.product
 
 import com.example.nikestore.data.Product
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 interface ProductRepository {
@@ -10,7 +11,8 @@ interface ProductRepository {
 
     fun getFavoriteProducts(): Single<List<Product>>
 
-    fun addToFavoriteProducts(): Completable
+    fun addToFavoriteProducts(product: Product): Completable
 
-    fun removeFromFavoriteProducts(): Completable
+    fun removeFromFavoriteProducts(product: Product): Completable
+
 }

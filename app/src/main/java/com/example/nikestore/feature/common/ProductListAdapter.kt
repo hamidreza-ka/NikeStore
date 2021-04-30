@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
@@ -24,7 +25,7 @@ class ProductListAdapter(
 ) :
     RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
-    var onProductClickListener: OnProductClickListener? = null
+    var productEventListener: ProductEventListener? = null
 
     var products = ArrayList<Product>()
         set(value) {
@@ -38,6 +39,7 @@ class ProductListAdapter(
         val productIv = itemView.findViewById<NikeImageView>(R.id.productIv)
         val currentPriceTv = itemView.findViewById<TextView>(R.id.currentPriceTv)
         val previousPriceTv = itemView.findViewById<TextView>(R.id.previousPriceTv)
+        val favoriteBtn = itemView.findViewById<ImageView>(R.id.favoriteBtn)
 
 
         fun bindProduct(product: Product) {
@@ -51,7 +53,19 @@ class ProductListAdapter(
             itemView.implementSpringAnimationTrait()
             // this caused item view be clickable and can implement animation
             itemView.setOnClickListener {
-                onProductClickListener?.onProductClick(product)
+                productEventListener?.onProductClick(product)
+            }
+
+            if (product.isFavorite)
+                favoriteBtn.setImageResource(R.drawable.ic_favorite_fill)
+            else
+                favoriteBtn.setImageResource(R.drawable.ic_favorites_16dp)
+
+
+            favoriteBtn.setOnClickListener {
+                productEventListener?.onFavoriteBtnClicked(product)
+                product.isFavorite = !product.isFavorite
+                notifyItemChanged(adapterPosition)
             }
         }
     }
@@ -78,7 +92,8 @@ class ProductListAdapter(
 
     override fun getItemCount(): Int = products.size
 
-    interface OnProductClickListener {
+    interface ProductEventListener {
         fun onProductClick(product: Product)
+        fun onFavoriteBtnClicked(product: Product)
     }
 }

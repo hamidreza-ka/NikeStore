@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -37,6 +38,8 @@ android {
 }
 
 dependencies {
+
+    def room_version = "2.3.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
@@ -88,4 +91,10 @@ dependencies {
 
     // custom webview with chrome engine
     implementation "androidx.browser:browser:1.3.0"
+
+
+    // Room components
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
 }

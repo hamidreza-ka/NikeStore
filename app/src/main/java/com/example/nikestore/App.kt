@@ -1,8 +1,10 @@
-package com.example.nikestore
+ package com.example.nikestore
 
 import android.app.Application
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.room.Room
+import com.example.nikestore.data.db.AppDatabase
 import com.example.nikestore.data.repository.*
 import com.example.nikestore.data.repository.banner.BannerRepository
 import com.example.nikestore.data.repository.banner.BannerRepositoryImpl
@@ -22,6 +24,7 @@ import com.example.nikestore.feature.auth.AuthViewModel
 import com.example.nikestore.feature.cart.CartViewModel
 import com.example.nikestore.feature.checkout.CheckoutViewModel
 import com.example.nikestore.feature.common.ProductListAdapter
+import com.example.nikestore.feature.favorites.FavoriteProductsViewModel
 import com.example.nikestore.feature.list.ProductListViewModel
 import com.example.nikestore.feature.home.HomeViewModel
 import com.example.nikestore.feature.main.MainViewModel
@@ -52,11 +55,12 @@ class App : Application() {
 
             single { createApiServiceInstance() }
             single<ImageLoadingService> { FrescoImageLoadingService() }
+            single { Room.databaseBuilder(this@App, AppDatabase::class.java, "db_app").build() }
 
             factory<ProductRepository> {
                 ProductRepositoryImpl(
                     ProductRemoteDataSource(get()),
-                    ProductLocalDataSource()
+                    get<AppDatabase>().productDao()
                 )
             }
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
@@ -89,6 +93,7 @@ class App : Application() {
             viewModel { ShippingViewModel(get()) }
             viewModel { (orderId: Int) -> CheckoutViewModel(orderId, get()) }
             viewModel { ProfileViewModel(get()) }
+            viewModel { FavoriteProductsViewModel(get()) }
 
 
         }

@@ -67,5 +67,5 @@
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorites" />
+        app:srcCompat="@drawable/ic_favorites_16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

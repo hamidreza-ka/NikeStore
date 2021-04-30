@@ -2,13 +2,15 @@ package com.example.nikestore.feature.list
 
 import androidx.lifecycle.MutableLiveData
 import com.example.nikestore.R
+import com.example.nikestore.core.NikeCompletableObserver
 import com.example.nikestore.core.NikeSingleObserver
 import com.example.nikestore.core.NikeViewModel
 import com.example.nikestore.core.asyncNetworkRequest
 import com.example.nikestore.data.Product
 import com.example.nikestore.data.repository.product.ProductRepository
+import io.reactivex.schedulers.Schedulers
 
-class ProductListViewModel(var sort: Int, val productRepository: ProductRepository) :
+class ProductListViewModel(var sort: Int, private val productRepository: ProductRepository) :
     NikeViewModel() {
 
     val productLiveData = MutableLiveData<List<Product>>()
@@ -42,5 +44,28 @@ class ProductListViewModel(var sort: Int, val productRepository: ProductReposito
         this.sort = sort
         selectedSortTitleLiveData.value = sortTitles[sort]
         getProductList()
+    }
+
+    fun addProductToFavorites(product: Product) {
+
+        if (product.isFavorite)
+            productRepository.removeFromFavoriteProducts(product)
+                .subscribeOn(Schedulers.io())
+                .subscribe(object : NikeCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        product.isFavorite = false
+                    }
+
+                })
+        else
+            productRepository.addToFavoriteProducts(product)
+                .subscribeOn(Schedulers.io())
+                .subscribe(object : NikeCompletableObserver(compositeDisposable) {
+
+                    override fun onComplete() {
+                        product.isFavorite = true
+                    }
+
+                })
     }
 }

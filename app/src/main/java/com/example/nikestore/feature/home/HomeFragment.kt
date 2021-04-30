@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
 import com.example.nikestore.core.EXTRA_KEY_DATA
 import com.example.nikestore.core.NikeFragment
-import com.example.nikestore.core.convertDpToPixel
 import com.example.nikestore.data.Product
 import com.example.nikestore.data.SORT_LATEST
 import com.example.nikestore.data.SORT_POPULAR
@@ -25,11 +24,19 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
-class HomeFragment : NikeFragment(), ProductListAdapter.OnProductClickListener {
+class HomeFragment : NikeFragment(), ProductListAdapter.ProductEventListener {
 
-    private val homeViewModel: HomeViewModel by viewModel()
-    private val latestProductListAdapter: ProductListAdapter by inject { parametersOf(VIEW_TYPE_ROUND) }
-    private val popularProductListAdapter: ProductListAdapter by inject { parametersOf(VIEW_TYPE_ROUND) }
+    private val viewModel: HomeViewModel by viewModel()
+    private val latestProductListAdapter: ProductListAdapter by inject {
+        parametersOf(
+            VIEW_TYPE_ROUND
+        )
+    }
+    private val popularProductListAdapter: ProductListAdapter by inject {
+        parametersOf(
+            VIEW_TYPE_ROUND
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,29 +52,29 @@ class HomeFragment : NikeFragment(), ProductListAdapter.OnProductClickListener {
         latestProductsRv.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         latestProductsRv.adapter = latestProductListAdapter
-        latestProductListAdapter.onProductClickListener = this
+        latestProductListAdapter.productEventListener = this
 
         popularProductsRv.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         popularProductsRv.adapter = popularProductListAdapter
-        popularProductListAdapter.onProductClickListener = this
+        popularProductListAdapter.productEventListener = this
 
 
-        homeViewModel.latestProductsLiveData.observe(viewLifecycleOwner) {
+        viewModel.latestProductsLiveData.observe(viewLifecycleOwner) {
             Timber.i(it[0].toString())
 
             latestProductListAdapter.products = it as ArrayList<Product>
         }
 
-        homeViewModel.popularProductsLiveData.observe(viewLifecycleOwner) {
+        viewModel.popularProductsLiveData.observe(viewLifecycleOwner) {
             popularProductListAdapter.products = it as ArrayList<Product>
         }
 
-        homeViewModel.progressLiveData.observe(viewLifecycleOwner) {
+        viewModel.progressLiveData.observe(viewLifecycleOwner) {
             setProgressIndicator(it)
         }
 
-        homeViewModel.bannerLiveData.observe(viewLifecycleOwner) {
+        viewModel.bannerLiveData.observe(viewLifecycleOwner) {
             Timber.i(it[0].toString())
 
             val bannerSliderAdapter = BannerSliderAdapter(this, it)
@@ -104,5 +111,9 @@ class HomeFragment : NikeFragment(), ProductListAdapter.OnProductClickListener {
         startActivity(Intent(requireContext(), ProductDetailActivity::class.java).apply {
             this.putExtra(EXTRA_KEY_DATA, product)
         })
+    }
+
+    override fun onFavoriteBtnClicked(product: Product) {
+        viewModel.addProductToFavorites(product)
     }
 }

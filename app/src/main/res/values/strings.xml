@@ -55,6 +55,8 @@
     <string name="signIn">ورود به حساب کاربری</string>
     <string name="signOut">خروج از حساب کاربری</string>
     <string name="guestUser">کاربر مهمان</string>
+    <string name="favorites_rmpty_state_message">هنوز محصولی به لیست علاقه مندی اضافه نکردی</string>
+    <string name="favorites_help_message">برای حذف محصول انگشت خود را بر روی آن نگه دارید</string>
 
     <string-array name="sortTitlesArray">
         <item>@string/sortLatest</item>

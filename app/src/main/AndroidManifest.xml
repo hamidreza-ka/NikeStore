@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NikeStore"
         android:usesCleartextTraffic="true">
+        <activity android:name=".feature.favorites.FavoriteProductsActivity"></activity>
         <activity android:name=".feature.checkout.CheckOutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -24,7 +25,6 @@
                     android:host="expertdevelopers.ir"
                     android:pathPattern="/appCheckout"
                     android:scheme="nike" />
-
             </intent-filter>
         </activity>
         <activity android:name=".feature.shipping.ShippingActivity" />
@@ -33,9 +33,7 @@
             android:theme="@style/Theme.Nike.AuthTheme" />
         <activity android:name=".feature.list.ProductListActivity" />
         <activity android:name=".feature.product.comment.CommentListActivity" />
-        <activity android:name=".feature.product.ProductDetailActivity" />
-
-        <!--        this attr use for hide keyboard-->
+        <activity android:name=".feature.product.ProductDetailActivity" /> <!-- this attr use for hide keyboard -->
         <activity
             android:name=".feature.main.MainActivity"
             android:windowSoftInputMode="stateHidden">
