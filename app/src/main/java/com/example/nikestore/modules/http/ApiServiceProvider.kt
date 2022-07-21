@@ -37,3 +37,21 @@ fun createApiServiceInstance(): ApiService {
 
     return retrofit.create(ApiService::class.java)
 }
+
+fun createAnalyticApiServiceInstance(): AnalyticApiService {
+
+    val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        })
+        .build()
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("http://130.185.121.239:8088/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .client(okHttpClient)
+        .build()
+
+    return retrofit.create(AnalyticApiService::class.java)
+}

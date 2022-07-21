@@ -1,14 +1,15 @@
 package com.example.nikestore.feature.checkout
 
+import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nikestore.R
 import com.example.nikestore.core.EXTRA_KEY_ID
 import com.example.nikestore.core.formatPrice
+import com.example.nikestore.feature.main.MainActivity
 import kotlinx.android.synthetic.main.activity_check_out.*
-import kotlinx.android.synthetic.main.item_purchase_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -28,13 +29,20 @@ class CheckOutActivity : AppCompatActivity() {
 
         viewModel.checkoutLiveData.observe(this) {
 
-            purchaseStatusTv.text = if (it.purchaseSuccess) "خرید با موفقیت انجام شد" else "خرید ناموفق"
+            purchaseStatusTv.text =
+                if (it.purchaseSuccess) "خرید با موفقیت انجام شد" else "سفارش با موفقیت ثبت شد"
             orderStatusTv.text = it.paymentStatus
             orderPriceTv.text = formatPrice(it.payablePrice)
 
         }
 
         checkoutToolbar.onBackButtonClickListener = View.OnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
+        returnHomeBtn.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }

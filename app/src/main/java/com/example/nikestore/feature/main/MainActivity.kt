@@ -1,6 +1,5 @@
 package com.example.nikestore.feature.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController

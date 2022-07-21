@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="rtl"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -14,12 +15,12 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="72dp"
             android:layout_height="72dp"
-            app:strokeColor="?dividerColor"
-            app:strokeWidth="1dp"
+            android:layout_marginTop="32dp"
             android:scaleType="centerInside"
             app:shapeAppearance="@style/Avatar"
-            android:layout_marginTop="32dp"
-            app:srcCompat="@drawable/ic_nike_logo" />
+            app:srcCompat="@drawable/ic_nike_logo"
+            app:strokeColor="?dividerColor"
+            app:strokeWidth="1dp" />
 
         <TextView
             android:id="@+id/usernameTv"
@@ -32,10 +33,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="32dp"
             android:divider="@drawable/shape_divider"
             android:dividerPadding="48dp"
+            android:orientation="vertical"
             android:showDividers="middle">
 
             <TextView
@@ -47,6 +48,7 @@
                 app:drawableStartCompat="@drawable/ic_favorites_20dp" />
 
             <TextView
+                android:id="@+id/historyBtn"
                 style="@style/profileTextViews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,12 +56,20 @@
                 app:drawableStartCompat="@drawable/ic_order_history" />
 
             <TextView
+                android:id="@+id/analyticsBtn"
+                style="@style/profileTextViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/analytics"
+                app:drawableStartCompat="@drawable/ic_analytics" />
+
+            <TextView
                 android:id="@+id/authBtn"
                 style="@style/profileTextViews"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="@string/signIn"
-                app:drawableStartCompat="@drawable/ic_sign_in" />
+                app:drawableStartCompat="@drawable/ic_sign_in"
+                tools:text="@string/signIn" />
         </LinearLayout>
 
     </LinearLayout>

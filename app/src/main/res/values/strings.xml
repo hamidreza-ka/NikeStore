@@ -52,10 +52,12 @@
     <string name="purchaseStatus">وضعیت سفارش</string>
     <string name="price">مبلغ</string>
     <string name="favorites">لیست علاقه مندی ها</string>
+    <string name="analytics">تحلیل و آمار</string>
     <string name="signIn">ورود به حساب کاربری</string>
     <string name="signOut">خروج از حساب کاربری</string>
     <string name="guestUser">کاربر مهمان</string>
-    <string name="favorites_rmpty_state_message">هنوز محصولی به لیست علاقه مندی اضافه نکردی</string>
+    <string name="favorites_empty_state_message">هنوز محصولی به لیست علاقه مندی اضافه نکردی</string>
+    <string name="analytics_empty_state_message">داده ای اضافه نشده</string>
     <string name="favorites_help_message">برای حذف محصول انگشت خود را بر روی آن نگه دارید</string>
 
     <string-array name="sortTitlesArray">

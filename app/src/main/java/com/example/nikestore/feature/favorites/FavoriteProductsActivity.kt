@@ -1,8 +1,8 @@
 package com.example.nikestore.feature.favorites
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nikestore.R
@@ -24,9 +24,12 @@ class FavoriteProductsActivity : NikeActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite_products)
 
+        toolbarView.onBackButtonClickListener = View.OnClickListener { finish() }
+
         helpBtn.setOnClickListener {
             showSnackBar(getString(R.string.favorites_help_message))
         }
+
 
 
         viewModel.productsLiveData.observe(this) {
@@ -39,7 +42,7 @@ class FavoriteProductsActivity : NikeActivity(),
             }
             else {
                 showEmptyState(R.layout.view_default_empty_state)
-                emptyStateMessageTv.text = getString(R.string.favorites_rmpty_state_message)
+                emptyStateMessageTv.text = getString(R.string.favorites_empty_state_message)
             }
         }
 
@@ -57,6 +60,6 @@ class FavoriteProductsActivity : NikeActivity(),
 
     override fun onFavoriteProductIsEmpty() {
         showEmptyState(R.layout.view_default_empty_state)
-        emptyStateMessageTv.text = getString(R.string.favorites_rmpty_state_message)
+        emptyStateMessageTv.text = getString(R.string.favorites_empty_state_message)
     }
 }

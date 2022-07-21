@@ -1,14 +1,15 @@
 package com.example.nikestore.feature.shipping
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nikestore.R
 import com.example.nikestore.core.EXTRA_KEY_DATA
 import com.example.nikestore.core.EXTRA_KEY_ID
 import com.example.nikestore.core.NikeSingleObserver
 import com.example.nikestore.core.openUrlInCustomTab
+import com.example.nikestore.data.OrderAnalyticModel
 import com.example.nikestore.data.PurchaseDetail
 import com.example.nikestore.data.SubmitOrderResult
 import com.example.nikestore.feature.cart.CartItemAdapter
@@ -18,7 +19,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_shipping.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.lang.IllegalStateException
 
 class ShippingActivity : AppCompatActivity() {
 
@@ -53,12 +53,25 @@ class ShippingActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : NikeSingleObserver<SubmitOrderResult>(compositeDisposable) {
                     override fun onSuccess(t: SubmitOrderResult) {
+                        val products = ArrayList<OrderAnalyticModel>()
+
+                        purchaseDetail.cartItems.forEach { cartItem ->
+                            products.add(
+                                OrderAnalyticModel(cartItem.product.id, cartItem.product.title, cartItem.product.price.toString(), cartItem.product.image)
+                            )
+                        }
+//                        viewModel.addOrderToAnalyticDb(products)
+
                         if (t.bankGatewayUrl.isNotEmpty())
                             openUrlInCustomTab(this@ShippingActivity, t.bankGatewayUrl)
                         else
-                            startActivity(Intent(this@ShippingActivity, CheckOutActivity::class.java).apply {
-                                putExtra(EXTRA_KEY_ID, t.orderId)
-                            })
+                            startActivity(
+                                Intent(
+                                    this@ShippingActivity,
+                                    CheckOutActivity::class.java
+                                ).apply {
+                                    putExtra(EXTRA_KEY_ID, t.orderId)
+                                })
 
                         finish()
 

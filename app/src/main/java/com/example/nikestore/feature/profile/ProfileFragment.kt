@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.nikestore.R
 import com.example.nikestore.core.NikeFragment
+import com.example.nikestore.feature.analytics.AnalyticsActivity
 import com.example.nikestore.feature.auth.AuthActivity
 import com.example.nikestore.feature.favorites.FavoriteProductsActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -29,6 +30,14 @@ class ProfileFragment : NikeFragment() {
 
         favoriteProductsBtn.setOnClickListener {
             startActivity(Intent(requireContext(), FavoriteProductsActivity::class.java))
+        }
+
+        analyticsBtn.setOnClickListener {
+            startActivity(Intent(requireContext(), AnalyticsActivity::class.java))
+        }
+
+        historyBtn.setOnClickListener {
+            showSnackBar("بخش سوابق سفارش بزودی اضافه می شود")
         }
     }
 

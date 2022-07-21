@@ -21,6 +21,7 @@ data class CartResponse(
 
 @Parcelize
 data class PurchaseDetail(
+    var cartItems: List<CartItem>,
     var payablePrice: Int,
     var totalPrice: Int,
     var shippingCost: Int

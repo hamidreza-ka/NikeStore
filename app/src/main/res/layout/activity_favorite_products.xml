@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".feature.favorites.FavoriteProductsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <com.example.nikestore.view.NikeToolbar
+            android:id="@+id/toolbarView"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@color/white"

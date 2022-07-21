@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.room.Room
 import com.example.nikestore.data.db.AppDatabase
 import com.example.nikestore.data.repository.*
+import com.example.nikestore.data.repository.analytic.AnalyticRepository
+import com.example.nikestore.data.repository.analytic.AnalyticRepositoryImpl
 import com.example.nikestore.data.repository.banner.BannerRepository
 import com.example.nikestore.data.repository.banner.BannerRepositoryImpl
 import com.example.nikestore.data.repository.cart.CartRepository
@@ -20,6 +22,7 @@ import com.example.nikestore.data.repository.product.ProductRepositoryImpl
 import com.example.nikestore.data.repository.source.*
 import com.example.nikestore.data.repository.user.UserRepository
 import com.example.nikestore.data.repository.user.UserRepositoryImpl
+import com.example.nikestore.feature.analytics.AnalyticsViewModel
 import com.example.nikestore.feature.auth.AuthViewModel
 import com.example.nikestore.feature.cart.CartViewModel
 import com.example.nikestore.feature.checkout.CheckoutViewModel
@@ -34,6 +37,7 @@ import com.example.nikestore.feature.profile.ProfileViewModel
 import com.example.nikestore.feature.shipping.ShippingViewModel
 import com.example.nikestore.modules.FrescoImageLoadingService
 import com.example.nikestore.modules.ImageLoadingService
+import com.example.nikestore.modules.http.createAnalyticApiServiceInstance
 import com.example.nikestore.modules.http.createApiServiceInstance
 import com.facebook.drawee.backends.pipeline.Fresco
 import org.koin.android.ext.android.get
@@ -54,6 +58,7 @@ class App : Application() {
         val myModules = module {
 
             single { createApiServiceInstance() }
+            single { createAnalyticApiServiceInstance() }
             single<ImageLoadingService> { FrescoImageLoadingService() }
             single { Room.databaseBuilder(this@App, AppDatabase::class.java, "db_app").build() }
 
@@ -67,6 +72,7 @@ class App : Application() {
             factory { (viewType: Int) -> ProductListAdapter(viewType, get()) }
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
             factory<CartRepository> { CartRepositoryImpl(CartRemoteDataSource(get())) }
+            factory<AnalyticRepository> { AnalyticRepositoryImpl(AnalyticRemoteDataSource(get())) }
 
             single<OrderRepository> { OrderRepositoryImpl(OrderRemoteDataSource(get())) }
             single<SharedPreferences> {
@@ -84,16 +90,17 @@ class App : Application() {
             }
 
             viewModel { HomeViewModel(get(), get()) }
-            viewModel { (bundle: Bundle) -> ProductDetailViewModel(bundle, get(), get()) }
+            viewModel { (bundle: Bundle) -> ProductDetailViewModel(bundle, get(), get(), get()) }
             viewModel { (productId: Int) -> CommentListViewModel(productId, get()) }
             viewModel { (sort: Int) -> ProductListViewModel(sort, get()) }
             viewModel { AuthViewModel(get()) }
             viewModel { CartViewModel(get()) }
             viewModel { MainViewModel(get()) }
-            viewModel { ShippingViewModel(get()) }
+            viewModel { ShippingViewModel(get(), get()) }
             viewModel { (orderId: Int) -> CheckoutViewModel(orderId, get()) }
             viewModel { ProfileViewModel(get()) }
             viewModel { FavoriteProductsViewModel(get()) }
+            viewModel { AnalyticsViewModel(get()) }
 
 
         }

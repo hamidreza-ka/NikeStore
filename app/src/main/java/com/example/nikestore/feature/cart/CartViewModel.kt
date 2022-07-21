@@ -30,7 +30,7 @@ class CartViewModel(private val cartRepository: CartRepository) : NikeViewModel(
                             cartItemsLiveData.value = t.cartItems
 
                             purchaseDetailLiveData.value =
-                                PurchaseDetail(t.payablePrice, t.totalPrice, t.shippingCost)
+                                PurchaseDetail(t.cartItems,t.payablePrice, t.totalPrice, t.shippingCost)
                         } else
                             emptyStateLiveData.value = EmptyState(true, R.string.cartEmptyState)
                     }

@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NikeStore"
         android:usesCleartextTraffic="true">
-        <activity android:name=".feature.favorites.FavoriteProductsActivity"></activity>
+        <activity
+            android:name=".feature.analytics.AnalyticsActivity"
+            android:exported="false" />
+        <activity android:name=".feature.favorites.FavoriteProductsActivity" />
         <activity android:name=".feature.checkout.CheckOutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
